@@ -4,18 +4,19 @@ import java.util.Random;
 public class BenchmarkFirst {
     public static void main(String[] args) {
         long total = 0;
-            for (int j = 0; j <= 10; j++) {
+            for (int j = 0; j <= 120; j++) {
+                int[]arr = sorted(1600000);
                 long begin = System.nanoTime();
-                boolean boo = search_unsorted(sorted(1000), 0);
+                System.out.println(search_unsorted(arr,0));
                 long end = System.nanoTime();
-                System.out.println((end - begin));
-                System.out.println(boo);
-                if (j > 5){
+                System.out.println((end - begin)/1000);
+
+                if (j > 19){
                     total += (end-begin);
                 }
 
             }
-        System.out.println(((total)/5)/1000000);
+        System.out.println(((total)/100)/1000);
 
 
     }
