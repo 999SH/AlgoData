@@ -9,8 +9,8 @@ public class BenchmarkThird {
         long total = 0;
         long total2 = 0;
         for (int j = 0; j <= 120; j++) {
-            int[] arr1 = sorted(1000000);
-            int[] arr2 = sorted(1000000);
+            int[] arr1 = sorted(1600000);
+            int[] arr2 = sorted(1600000);
             long begin = System.nanoTime();
             System.out.println(doublesort(arr1, arr2) + " Duplicates found");
             long end = System.nanoTime();
@@ -56,10 +56,9 @@ public class BenchmarkThird {
     public static boolean binary_search(int[] array, int key) {
         int first = 0;
         int last = array.length - 1;
-        int index = (array.length) / 2;
         while (true) {
 
-            index = first + (last - first) / 2;
+            int index = first + (last - first) / 2;
             if (array[index] < key && index < last) {
 // The index position holds something that is less than
 // what we're looking for, what is the first possible page? first = ...... ;
