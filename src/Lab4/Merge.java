@@ -7,8 +7,9 @@ public class Merge {
 
     private static void merge(int[] org, int[] aux, int lo, int mid, int hi) {
         // copy all items from lo to hi from org to aux
-        for ( ......  ) {
-      :
+        for (int i: org) {
+            aux[i] = org[i];
+            
         }
 // let's do the merging
         int i = lo; // the index in the first part
