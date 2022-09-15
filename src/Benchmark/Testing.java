@@ -1,7 +1,8 @@
-package Lab5;
+package Benchmark;
+
 import java.util.Arrays;
 
-public class Main {
+public class Testing {
     public static void main(String[] args) {
         int[] nArray = new int[6];
         int ok = 1000;

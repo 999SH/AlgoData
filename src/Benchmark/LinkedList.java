@@ -1,6 +1,8 @@
-package Lab5;
+package Benchmark;
+
 public class LinkedList {
     Node head;
+
     public void addNode(int value){
         Node node = new Node();
         node.value = value;
