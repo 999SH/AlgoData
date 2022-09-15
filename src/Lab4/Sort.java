@@ -35,9 +35,9 @@ public class Sort {
                     min = t0;
                 }
             }
-            System.out.println("Insertionsort "+(min/n));
+            System.out.println("Insertionsort "+(min));
         }
-        /*for (int n : nArray) {
+        for (int n : nArray) {
             long min = Long.MAX_VALUE;
             int c = n;
             int[] reversedArray = new int[n];
@@ -56,7 +56,7 @@ public class Sort {
                 }
             }
             System.out.println("Selectionsort "+(min));
-        } */
+        }
 
         for (int n : nArray) {
             long min = Long.MAX_VALUE;
@@ -76,7 +76,7 @@ public class Sort {
                     min = t0;
                 }
             }
-            System.out.println("Mergesort "+(min/n));
+            System.out.println("Mergesort "+(min));
         }
     }
 
