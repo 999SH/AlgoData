@@ -2,6 +2,7 @@ package Lab5;
 
 public class LinkedList {
     Node head;
+    Node tail;
 
     public void addNode(int value) {
         Node node = new Node();
@@ -19,6 +20,23 @@ public class LinkedList {
         }
     }
 
+    public void addNodeTest(int value){
+        Node node = new Node();
+        node.value = value;
+        node.pointer = null;
+        if (head == null) {
+            head = node;
+        } else {
+            getTail().pointer = node;
+        }
+
+    }
+
+    public void removeNode(LinkedList list){
+        Node n;
+        getTail() = n.
+    }
+
     public void printList() {
         Node node = head;
         while (node.pointer != null) {
@@ -34,6 +52,14 @@ public class LinkedList {
     }
 
     public Node getTail() {
+        Node travel = head;
+        while (travel.pointer != null) {
+            travel = travel.pointer;
+        }
+        return travel;
+    }
+
+    public Node setTail(LinkedList list, Node node) {
         Node travel = head;
         while (travel.pointer != null) {
             travel = travel.pointer;
