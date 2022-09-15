@@ -31,12 +31,6 @@ public class LinkedList {
         }
 
     }
-
-    public void removeNode(LinkedList list){
-        Node n;
-        getTail() = n.
-    }
-
     public void printList() {
         Node node = head;
         while (node.pointer != null) {
