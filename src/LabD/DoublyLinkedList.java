@@ -1,6 +1,6 @@
-package Lab5;
+package LabD;
 
-public class LinkedList {
+public class DoublyLinkedList {
     Node head;
     Node tail;
 
@@ -8,6 +8,7 @@ public class LinkedList {
         Node node = new Node();
         node.value = value;
         node.pointer = null;
+        node.previousPointer = null;
 
         if (head == null) {
             head = node;
@@ -18,38 +19,16 @@ public class LinkedList {
                 travel = travel.pointer;
             }
             travel.pointer = node;
+            node.previousPointer = travel;
         }
-    }
-
-    public void addNodeTest(int value){
-        Node node = new Node();
-        node.value = value;
-        node.pointer = null;
-        if (head == null) {
-            head = node;
-        } else {
-            getTail().pointer = node;
-        }
-
+        tail = node;
     }
     public Node getHead() {
         return head;
     }
 
     public Node getTail() {
-        Node travel = head;
-        while (travel.pointer != null) {
-            travel = travel.pointer;
-        }
-        return travel;
-    }
-
-    public Node setTail(LinkedList list, Node node) {
-        Node travel = head;
-        while (travel.pointer != null) {
-            travel = travel.pointer;
-        }
-        return travel;
+        return tail;
     }
 
     public int getValue(int index) {
@@ -64,12 +43,7 @@ public class LinkedList {
         return node.value;
     }
 
-    public int getValueNode(Node n){
-        return n.value;
-    }
-
-
-    public void addList(LinkedList list, LinkedList append) {
+    public void addList(DoublyLinkedList list, DoublyLinkedList append) {
         Node travel = null;
         Node appendednode = null;
         travel = list.getTail();
@@ -80,18 +54,5 @@ public class LinkedList {
             appendednode = appendednode.pointer;
         }
 
-    }
-
-    public void addNodeWithPointer(Node input){
-            if (head == null) {
-                head = input;
-            }
-            else {
-                Node travel = head;
-                while (travel.pointer != null) {
-                    travel = travel.pointer;
-                }
-                travel.pointer = input;
-            }
     }
 }
