@@ -18,18 +18,23 @@ public class Main {
         for (int n : nArray) {
             long min = Long.MAX_VALUE;
             for (int j = 0; j < k; j++) {
-                DoublyLinkedList empty = new DoublyLinkedList();
-                long begin = System.nanoTime();
+                DoublyLinkedList dll = new DoublyLinkedList();
+                Lab5.LinkedList LinkedList = new Lab5.LinkedList();
                 for (int i = 0; i < n; i++) {
-                    empty.addNode(i);
+                    dll.addDLLNode(i);
+                    LinkedList.addNode(i);
                 }
+
+
+                long begin = System.nanoTime();
+                //action
                 long end = System.nanoTime();
                 t0 = (end - begin);
                 if (t0 < min) {
                     min = t0;
                 }
             }
-            System.out.println("Linked list append " + (min));
+            System.out.println("DLL append " + (min));
         }
     }
 }

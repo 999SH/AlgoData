@@ -1,11 +1,13 @@
 package LabD;
 
-public class DoublyLinkedList {
-    Node head;
-    Node tail;
+import Lab5.Node;
 
-    public void addNode(int value) {
-        Node node = new Node();
+public class DoublyLinkedList {
+    DLLNode head;
+    DLLNode tail;
+
+    public void addDLLNode(int value) {
+        DLLNode node = new DLLNode();
         node.value = value;
         node.pointer = null;
         node.previousPointer = null;
@@ -14,7 +16,7 @@ public class DoublyLinkedList {
             head = node;
         }
         else {
-            Node travel = head;
+            DLLNode travel = head;
             while (travel.pointer != null) {
                 travel = travel.pointer;
             }
@@ -23,16 +25,36 @@ public class DoublyLinkedList {
         }
         tail = node;
     }
-    public Node getHead() {
+    public DLLNode getHead() {
         return head;
     }
 
-    public Node getTail() {
+    public DLLNode getTail() {
         return tail;
     }
 
+    public DLLNode removeDLLNode(int index){
+        DLLNode node = head;
+        int i = 0;
+        DLLNode saveDLLNode = null;
+        DLLNode prevDLLNode = null;
+        while (node.pointer != null && i++ < index) {
+            node = node.pointer;
+            if (node.pointer == null && i != index) {
+                System.out.println("Index is empty");
+            }
+            if (i == index){
+                saveDLLNode = node.pointer;
+                prevDLLNode = node.previousPointer;
+                node = node.pointer;
+                node.previousPointer = prevDLLNode;
+            }
+        }
+        return saveDLLNode;
+    }
+
     public int getValue(int index) {
-        Node node = head;
+        DLLNode node = head;
         int i = 0;
         while (node.pointer != null && i++ < index) {
             node = node.pointer;
@@ -44,8 +66,8 @@ public class DoublyLinkedList {
     }
 
     public void addList(DoublyLinkedList list, DoublyLinkedList append) {
-        Node travel = null;
-        Node appendednode = null;
+        DLLNode travel = null;
+        DLLNode appendednode = null;
         travel = list.getTail();
         appendednode = append.getHead();
 
