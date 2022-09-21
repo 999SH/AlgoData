@@ -5,6 +5,7 @@ import Lab5.Node;
 public class DoublyLinkedList {
     DLLNode head;
     DLLNode tail;
+    int DLLlength = 0;
 
     public void addDLLNode(int value) {
         DLLNode node = new DLLNode();
@@ -14,8 +15,7 @@ public class DoublyLinkedList {
 
         if (head == null) {
             head = node;
-        }
-        else {
+        } else {
             DLLNode travel = head;
             while (travel.pointer != null) {
                 travel = travel.pointer;
@@ -24,7 +24,9 @@ public class DoublyLinkedList {
             node.previousPointer = travel;
         }
         tail = node;
+        DLLlength++;
     }
+
     public DLLNode getHead() {
         return head;
     }
@@ -33,24 +35,51 @@ public class DoublyLinkedList {
         return tail;
     }
 
-    public DLLNode removeDLLNode(int index){
-        DLLNode node = head;
-        int i = 0;
-        DLLNode saveDLLNode = null;
-        DLLNode prevDLLNode = null;
-        while (node.pointer != null && i++ < index) {
-            node = node.pointer;
-            if (node.pointer == null && i != index) {
-                System.out.println("Index is empty");
-            }
-            if (i == index){
-                saveDLLNode = node.pointer;
-                prevDLLNode = node.previousPointer;
+    public void removeDLLNode(int index) {
+        if (index < DLLlength / 2) {
+            DLLNode node = head;
+            int i = 0;
+            DLLNode saveDLLNode = null;
+            DLLNode prevDLLNode = null;
+            while (node.pointer != null && i++ < index) {
                 node = node.pointer;
-                node.previousPointer = prevDLLNode;
+                if (node.pointer == null && i != index) {
+                    System.out.println("Index is empty");
+                }
+                if (i == index) {
+                    saveDLLNode = node.pointer;
+                    prevDLLNode = node.previousPointer;
+                    node = node.pointer;
+                    node.previousPointer = prevDLLNode;
+                }
             }
+            DLLlength--;
         }
-        return saveDLLNode;
+        else {
+            DLLNode node = tail;
+            int i = DLLlength;
+            DLLNode saveDLLNode = null;
+            DLLNode prevDLLNode = null;
+            while (node.pointer != null && i-- > index) {
+                node = node.previousPointer;
+                if (i == index) {
+                    saveDLLNode = node.pointer;
+                    prevDLLNode = node.previousPointer;
+                    node = node.pointer;
+                    node.previousPointer = prevDLLNode;
+                }
+            }
+            DLLlength--;
+        }
+    }
+
+    public void addDLLend(int value) {
+        DLLNode node = new DLLNode();
+        node.value = value;
+        node.pointer = null;
+        node.previousPointer = tail;
+        tail.pointer = node;
+        tail = node;
     }
 
     public int getValue(int index) {

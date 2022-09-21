@@ -40,6 +40,13 @@ public class LinkedList {
         return saveNode;
     }
 
+    public void addNodeEnd(int value){
+        Node node = new Node();
+        node.value = value;
+        node.pointer = null;
+        tail.pointer = node;
+        tail = node;
+    }
     public Node getHead() {
         return head;
     }
