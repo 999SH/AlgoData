@@ -8,6 +8,6 @@ public class Main {
         Tree.addLeaf(3,8);
         Tree.addLeaf(8,7);
         Tree.addLeaf(9,9);
-        Tree.printTree();
+        Tree.addLeaf(1,7);
     }
 }

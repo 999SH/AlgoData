@@ -12,15 +12,15 @@ public class BinaryTree {
         }
         else {
             Node node = root;
-            while (node.getRightPointer() != null || node.getLeftPointer() != null){
-                if (index < node.getIndex() && node.leftPointer != null ){
+            while (node.rightPointer != null || node.leftPointer != null){
+                if (index < node.index && node.leftPointer != null ){
                     node = node.leftPointer;
                 }
                 if (index == node.index){
                     node.value += leaf.value;
                     break;
                 }
-                if (index > node.getIndex() && node.rightPointer != null) {
+                if (index > node.index && node.rightPointer != null) {
                     node = node.rightPointer;
                 }
                 else {
@@ -36,24 +36,5 @@ public class BinaryTree {
                 node.rightPointer = leaf;
             }
         }
-    }
-    public void moveLeft(Node input){
-        input = input.getLeftPointer();
-    }
-
-    public void moveRight(Node input){
-        input = input.getRightPointer();
-    }
-
-    public static void search(int key){
-
-    }
-
-    public void printTree(){
-        int curlength = 0;
-        Node node = root;
-        while (length > curlength++)
-            System.out.println(node.getValue());
-            moveLeft(node);
     }
 }
