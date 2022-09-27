@@ -9,5 +9,6 @@ public class Main {
         Tree.addLeaf(8,7);
         Tree.addLeaf(9,9);
         Tree.addLeaf(1,7);
+        Tree.print();
     }
 }
