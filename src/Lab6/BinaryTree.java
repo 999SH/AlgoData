@@ -5,36 +5,37 @@ public class BinaryTree {
     Node root;
     int length = 0;
     public void addLeaf(int index, int value){
-        Node leaf = new Node(value,index);
-        int curlength = 0;
+        Node leaf = new Node(index,value);
 
         if (root == null){
             root = leaf;
         }
         else {
             Node node = root;
-            while (length > curlength++){
-                if (index < node.getIndex() && root.getLeftPointer() != null){
-                    moveLeft(node);
+            while (node.getRightPointer() != null || node.getLeftPointer() != null){
+                if (index < node.getIndex() && node.leftPointer != null ){
+                    node = node.leftPointer;
                 }
-                if (index == node.getIndex()){
-                    root.updateValue(leaf.getValue());
+                if (index == node.index){
+                    node.value += leaf.value;
+                    break;
                 }
-                else if (root.getRightPointer() != null) {
-                    moveRight(node);
+                if (index > node.getIndex() && node.rightPointer != null) {
+                    node = node.rightPointer;
+                }
+                else {
+                    break;
                 }
             }
-            if (index < node.getIndex()){
-                node.setLeftPointer(leaf);
+            if (index < node.index){
+                node.leftPointer = leaf;
             }
-            if (index == node.getIndex()){
-                root.updateValue(leaf.getValue());
+            if (index == node.index){
             }
-            else {
-                node.setRightPointer(leaf);
+            if (index > node.index) {
+                node.rightPointer = leaf;
             }
         }
-        length++;
     }
     public void moveLeft(Node input){
         input = input.getLeftPointer();
@@ -53,6 +54,6 @@ public class BinaryTree {
         Node node = root;
         while (length > curlength++)
             System.out.println(node.getValue());
-            moveRight(node);
+            moveLeft(node);
     }
 }

@@ -1,11 +1,11 @@
 package Lab6;
 
 public class Node {
-    private int index;
-    private int value;
+    int index;
+    int value;
 
-    private Node leftPointer;
-    private Node rightPointer;
+    Node leftPointer;
+    Node rightPointer;
 
     public Node(int index, int value){
         this.index = index;
@@ -43,6 +43,10 @@ public class Node {
     }
     public void setRightPointer(Node rightPointer){
         this.rightPointer = rightPointer;
+    }
+
+    public void moveRightNode(Node input){
+        input = input.rightPointer;
     }
 
 }
