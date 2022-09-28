@@ -43,13 +43,13 @@ public class BinaryTree {
     public void print() {
         stack.push(root);
         while (!stack.isEmpty()) {
-            Node curr = stack.pop();
-            System.out.println(curr.index);
-            if (curr.rightPointer != null) {
-                stack.push(curr.rightPointer);
+            Node node = stack.pop();
+            System.out.println(node.index);
+            if (node.leftPointer != null) {
+                stack.push(node.leftPointer);
             }
-            if (curr.leftPointer != null) {
-                stack.push(curr.leftPointer);
+            if (node.rightPointer != null) {
+                stack.push(node.rightPointer);
             }
         }
     }
