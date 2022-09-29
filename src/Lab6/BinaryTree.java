@@ -46,7 +46,27 @@ public class BinaryTree implements Iterable<Integer> {
             }
         }
     }
+    public class TreeIterator implements Iterator<Integer> {
+        private Node next;
+        private Stack<Node> stack;
+        public TreeIterator() {
+            this.stack = new Stack<>();
+            this.stack.push(root);
+            this.next = root.leftPointer;
+        }
+        @Override
+        public boolean hasNext() {
+            
+        }
+        @Override
+        public Integer next() {
 
+        }
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
+    }
     public void print() {
         stack.push(root);
         while (!stack.isEmpty()) {

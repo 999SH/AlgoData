@@ -42,6 +42,8 @@ public class Main {
         tree.addLeaf(14,1);
         tree.addLeaf(12,1);
         tree.print();
+        for (int i : tree)
+            System.out.println("next value " + i);
         }
     }
 
