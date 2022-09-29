@@ -1,9 +1,16 @@
 package Lab6;
 
 
+import java.util.Iterator;
 import java.util.Stack;
 
-public class BinaryTree {
+
+public class BinaryTree implements Iterable<Integer> {
+
+    public Iterator<Integer> iterator() {
+        return new TreeIterator();
+    }
+
     Stack<Node> stack = new Stack<Node>();
     Node root;
     int length = 0;
@@ -40,10 +47,6 @@ public class BinaryTree {
         }
     }
 
-    public Iterator<Integer> iterator(){
-        return new TreeIterator();
-    }
-
     public void print() {
         stack.push(root);
         while (!stack.isEmpty()) {
@@ -57,24 +60,21 @@ public class BinaryTree {
             }
         }
     }
-}
-class TreeIterator implements Iterator<Integer> {
-    private Node next;
-    private Stack<Node> stack;
-    public TreeIterator() {
-
-    }
-    @Override
-    public boolean hasNext() {
-
-    }
-    @Override
-    public Integer next() {
-
-    }
-    @Override
-    public void remove() {
-        throw new UnsupportedOperationException();
+    public Integer lookup(Integer key) {
+        Node node = root;
+        while (key != node.index) {
+            if (key > node.index) {
+                node = node.rightPointer;
+            }
+            if (key < node.index) {
+                node = node.leftPointer;
+            }
+            else {
+                return null;
+            }
+        }
+        return node.value;
     }
 }
+
 
