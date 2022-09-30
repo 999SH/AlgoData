@@ -11,9 +11,8 @@ public class BinaryTree implements Iterable<Integer> {
         return new TreeIterator();
     }
 
-    Stack<Node> stack = new Stack<Node>();
+    Stack<Node> stack = new Stack<>();
     Node root;
-    int length = 0;
 
     public void addLeaf(int index, int value) {
         Node leaf = new Node(index, value);
@@ -47,20 +46,29 @@ public class BinaryTree implements Iterable<Integer> {
         }
     }
     public class TreeIterator implements Iterator<Integer> {
-        private Node next;
-        private Stack<Node> stack;
+
         public TreeIterator() {
-            this.stack = new Stack<>();
-            this.stack.push(root);
-            this.next = root.leftPointer;
+
         }
         @Override
         public boolean hasNext() {
-            
+            return !stack.isEmpty();
         }
         @Override
         public Integer next() {
-
+            if (!hasNext()) {
+                return null;
+            }
+            Node node = stack.pop();
+            Node right;
+            if (node.rightPointer != null) {
+                node = node.rightPointer;
+                while (node != null){
+                    stack.push(node);
+                    node  = node.leftPointer;
+                }
+            }
+            return node.value;
         }
         @Override
         public void remove() {

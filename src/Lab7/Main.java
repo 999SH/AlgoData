@@ -1,8 +1,8 @@
-package Lab6;
+package Lab7;
 
 
 public class Main {
-    public static void main (String [] args){
+    public static void main(String[]args){
         BinaryTree tree = new BinaryTree();
         tree.addLeaf(10,1);
         tree.addLeaf(3,1);
@@ -11,9 +11,7 @@ public class Main {
         tree.addLeaf(11,1);
         tree.addLeaf(14,1);
         tree.addLeaf(12,1);
-        tree.print();
-        for (int i : tree)
-            System.out.println("next value " + i);
-        }
+        tree.BFSPRint();
     }
+}
 
