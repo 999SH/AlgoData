@@ -12,6 +12,8 @@ public class Main {
         tree.addLeaf(14,1);
         tree.addLeaf(12,1);
         tree.BFSPRint();
+        for (int i : tree)
+            System.out.println("Next value " + i);
     }
 }
 
