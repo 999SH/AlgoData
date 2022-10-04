@@ -5,8 +5,10 @@ public class ArrayQueue<Item> {
     private int queuepointer;
     private int headpointer;
 
+    int n = 2;
+    int counter = 0;
     public ArrayQueue() {
-        this.queue = (Item[]) new Object[2];
+        this.queue = (Item[]) new Object[n];
         queuepointer = 0;
         headpointer = 0;
     }
@@ -20,37 +22,92 @@ public class ArrayQueue<Item> {
         }
     }
 
-    public boolean isFull(){
-        if (queuepointer == headpointer && queue[queuepointer] != null){
-            return true;
+    public void sizeCheck(){
+        if (isFull()){
+            n = n*2;
+            Item[] queueCopy = (Item[]) new Object[n];
+            int localI = 0;
+            if (headpointer < queuepointer) {
+                for (int i = headpointer; i < queuepointer+1; i++) {
+                    if (queue[i] != null){
+                        queueCopy[localI++] = queue[i];
+                    }
+                }
+            }
+            else {
+                for (int i = headpointer; i < queue.length; i++) {
+                    if (queue[i] != null){
+                        queueCopy[localI++] = queue[i];
+                    }
+                }
+                for (int i = 0; i < queuepointer; i++) {
+                    if (queue[i] != null){
+                        queueCopy[localI++] = queue[i];
+                    }
+                }
+            }
+            this.queue = queueCopy;
+            headpointer = 0;
+            queuepointer = counter;
         }
-        else return false;
+    }
+
+    public void shrinkCheck(){
+        if (counter < n/4) {
+            n = n/2;
+            Item[] queueCopy = (Item[]) new Object[n];
+            if (headpointer < queuepointer) {
+                int localI = 0;
+                for (int i = headpointer; i <queuepointer+1; i++) {
+                    queueCopy[localI++] = queue[i];
+                }
+            }
+            if (headpointer > queuepointer){
+                int localI = 0;
+                for (int i = headpointer; i < queue.length; i++) {
+                    if (queue[i] != null){
+                        queueCopy[localI++] = queue[i];
+                    }
+                }
+                for (int i = 0; i < queuepointer; i++) {
+                    if (queue[i] != null){
+                        queueCopy[localI++] = queue[i];
+                    }
+                }
+
+            }
+            this.queue = queueCopy;
+            headpointer = 0;
+            queuepointer = counter;
+        }
+    }
+    public boolean isFull(){
+        loopCheck();
+        return (queuepointer == headpointer && queue[headpointer] != null);
     }
 
     public boolean isEmpty(){
-        if (queuepointer == headpointer && queue[queuepointer] == null){
-            return true;
-        }
-        else return false;
+        loopCheck();
+        return (queuepointer == headpointer && queue[headpointer] == null);
     }
 
     public void add(Item item) {
-        loopCheck();
+        sizeCheck();
         if (!isFull()){
-            queue[queuepointer] = item;
+            queue[queuepointer++] = item;
+            loopCheck();
+            counter++;
         }
     }
     public Item poll() {
-        loopCheck();
         if (isEmpty()){
             return null;
         }
-        else {
-            Item removedItem = this.queue[this.headpointer];
-            this.queue[headpointer] = null;
-            headpointer++;
-            return removedItem;
-        }
+        Item removedItem = this.queue[this.headpointer];
+        this.queue[this.headpointer++] = null;
+        counter--;
+        shrinkCheck();
+        return removedItem;
     }
 
 }

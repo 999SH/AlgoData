@@ -50,7 +50,7 @@ public class BinaryTree implements Iterable<Integer> {
 
         @Override
         public boolean hasNext() {
-            return !arrayQ.isEmpty();
+            return !(arrayQ.isEmpty());
         }
 
         @Override
@@ -86,6 +86,20 @@ public class BinaryTree implements Iterable<Integer> {
             }
             if (node.rightPointer != null){
                 q.add(node.rightPointer);
+            }
+        }
+    }
+
+    public void BFSPRintArray(){
+        arrayQ.add(root);
+        while (!arrayQ.isEmpty()){
+            TNode node = arrayQ.poll();
+            System.out.println(node.index);
+            if (node.leftPointer != null){
+                arrayQ.add(node.leftPointer);
+            }
+            if (node.rightPointer != null){
+                arrayQ.add(node.rightPointer);
             }
         }
     }
