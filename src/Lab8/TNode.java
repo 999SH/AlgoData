@@ -2,6 +2,7 @@ package Lab8;
 
 public class TNode {
     int value;
+    int depth;
     TNode leftPointer;
     TNode rightPointer;
 

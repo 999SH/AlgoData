@@ -42,7 +42,7 @@ public class Main {
                 return true;
             }
         if (first == last) {
-                 break;
+            break;
         }
         else break;
         }
