@@ -12,8 +12,7 @@ public class Main {
         heapTree.addLeaf(6);
         heapTree.addLeaf(8);
         heapTree.BFSPRint();
-        heapTree.remove();
-        heapTree.BFSPRint();
+
 
         ArrayHeap heapArray = new ArrayHeap();
         heapArray.add(2);
@@ -22,6 +21,9 @@ public class Main {
         heapArray.add(0);
         heapArray.add(4);
         heapArray.add(5);
+        heapArray.add(6);
+        heapArray.add(8);
+        heapArray.arrayprint();
     }
 }
 

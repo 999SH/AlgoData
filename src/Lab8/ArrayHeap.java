@@ -1,9 +1,11 @@
 package Lab8;
 
+
 public class ArrayHeap {
     int[] arrayHeap;
-    int n = 2;
+    int n = 10;
     private int arraypointer;
+
 
     public ArrayHeap() {
         this.arrayHeap = new int[n];
@@ -62,6 +64,12 @@ public class ArrayHeap {
         arrayHeap[0] = arrayHeap[arraypointer];
         sink(0);
         return temp;
+    }
+
+    public void arrayprint(){
+        for (int i = 0; i < n; i++) {
+            System.out.println(arrayHeap[i]);
+        }
     }
 
 

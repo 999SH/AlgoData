@@ -108,7 +108,6 @@ public class BinaryHeap {
         TNode node = this.root;
         node.value = Integer.MAX_VALUE;
         verifyHeap();
-
         return temp;
     }
 
