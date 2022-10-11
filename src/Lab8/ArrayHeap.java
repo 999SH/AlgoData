@@ -24,17 +24,36 @@ public class ArrayHeap {
         bubble(arraypointer++);
     }
 
-    public void bubble(int nodeIndex){
-        while (nodeIndex > 0 && arrayHeap[getParentIndex(nodeIndex)] < arrayHeap[nodeIndex]) {
-            swap(getParentIndex(nodeIndex),nodeIndex);
+    public void remove(int node){
+        int temp = arrayHeap[0];
+        arrayHeap[0] = arrayHeap[arraypointer];
+        //sink(0);
+    }
+
+    public void bubble(int index){
+        while (index > 0 && arrayHeap[getParentIndex(index)] < arrayHeap[index]) {
+            swap(getParentIndex(index),index);
         }
-        nodeIndex = getParentIndex(nodeIndex);
+        index = getParentIndex(index);
     }
 
     public void swap(int a, int b){
         int temp = arrayHeap[a];
         arrayHeap[a] = arrayHeap[b];
         arrayHeap[b] = temp;
+    }
+
+    public void sink(int index){
+        while (index > arraypointer){
+            if (arrayHeap[index] > arrayHeap[getLeftPointer(index)]){
+                swap(index,getLeftPointer(index));
+            } else if (arrayHeap[index] > arrayHeap[getRightPointer(index)]) {
+                swap(index,getRightPointer(index));
+            }
+            else {
+                break;
+            }
+        }
     }
 
 }
