@@ -19,41 +19,50 @@ public class ArrayHeap {
         return ((2*index)+2);
     }
 
-    public void add(int node){
-        arrayHeap[arraypointer] = node;
-        bubble(arraypointer++);
-    }
-
-    public void remove(int node){
-        int temp = arrayHeap[0];
-        arrayHeap[0] = arrayHeap[arraypointer];
-        //sink(0);
-    }
-
-    public void bubble(int index){
-        while (index > 0 && arrayHeap[getParentIndex(index)] < arrayHeap[index]) {
-            swap(getParentIndex(index),index);
-        }
-        index = getParentIndex(index);
-    }
-
     public void swap(int a, int b){
         int temp = arrayHeap[a];
         arrayHeap[a] = arrayHeap[b];
         arrayHeap[b] = temp;
     }
 
-    public void sink(int index){
-        while (index > arraypointer){
-            if (arrayHeap[index] > arrayHeap[getLeftPointer(index)]){
-                swap(index,getLeftPointer(index));
-            } else if (arrayHeap[index] > arrayHeap[getRightPointer(index)]) {
-                swap(index,getRightPointer(index));
+    public void bubble(int index){
+        while (index > 0) {
+            if(arrayHeap[getParentIndex(index)] > arrayHeap[index]){
+                swap(getParentIndex(index),index);
+                index = getParentIndex(index);
             }
             else {
                 break;
             }
         }
     }
+
+    public void sink(int index){
+        while (index > arraypointer){
+            if (arrayHeap[index] > arrayHeap[getLeftPointer(index)]){
+                swap(index,getLeftPointer(index));
+                index = getLeftPointer(index);
+            } else if (arrayHeap[index] > arrayHeap[getRightPointer(index)]) {
+                swap(index,getRightPointer(index));
+                index = getRightPointer(index);
+            }
+            else {
+                break;
+            }
+        }
+    }
+
+    public void add(int node){
+        arrayHeap[arraypointer] = node;
+        bubble(arraypointer++);
+    }
+
+    public int remove(int node){
+        int temp = arrayHeap[0];
+        arrayHeap[0] = arrayHeap[arraypointer];
+        sink(0);
+        return temp;
+    }
+
 
 }
