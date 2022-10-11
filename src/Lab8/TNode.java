@@ -12,5 +12,6 @@ public class TNode {
 
         leftPointer = null;
         rightPointer = null;
+        this.heapSize = 1;
     }
 }
