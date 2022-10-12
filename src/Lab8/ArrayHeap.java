@@ -3,7 +3,7 @@ package Lab8;
 
 public class ArrayHeap {
     int[] arrayHeap;
-    int n = 10;
+    int n = 64;
     private int arraypointer;
 
 
