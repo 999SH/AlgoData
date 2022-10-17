@@ -12,7 +12,8 @@ public class Zip {
             int i = 0;
             while ((line = br.readLine()) != null) {
                 String[] row = line.split(",");
-                data[i++] = new HashNode(row[0], row[1], Integer.valueOf(row[2]));
+                Integer code = Integer.valueOf(row[0].replaceAll("\\s",""));
+                data[i++] = new HashNode(code, row[1], Integer.valueOf(row[2]));
             }
             max = i-1;
         } catch (Exception e) {
@@ -20,14 +21,11 @@ public class Zip {
         }
     }
 
-    public boolean lookup(String key){
+    public boolean lookup(Integer key){
         int index = 0;
-        String force;
         while(index <= max){
-            System.out.println(data[index].code);
-            System.out.println(key);
-            force = data[index].code;
-            if ((force).equals(key)){
+            int force = data[index].code;
+            if (force == key){
                 return true;
             }
             index++;
