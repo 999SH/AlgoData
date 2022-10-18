@@ -4,6 +4,8 @@ import Lab9.Zip;
 
 import java.util.Random;
 
+import java.util.Arrays;
+
 public class Benchmark{
     public static void main(String args[]){
         Random generator = new Random();
@@ -26,8 +28,9 @@ public class Benchmark{
 
         for (int j = 0; j < k; j++) {
             Zip postCodes = new Zip("resources/postnummer.csv");
+            Zip arrayzip = new Zip(postCodes);
             long begin = System.nanoTime();
-            postCodes.lookup( 99499);
+            arrayzip.lookup(99499);
             long end = System.nanoTime();
             t0 = (end - begin);
             if (t0 < min) {
