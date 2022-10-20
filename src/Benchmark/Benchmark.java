@@ -1,7 +1,6 @@
 package Benchmark;
 
-import Lab9.Zip;
-
+import java.util.LinkedList;
 import java.util.Random;
 
 import java.util.Arrays;
@@ -10,7 +9,7 @@ public class Benchmark{
     public static void main(String args[]){
         Random generator = new Random();
         int[] nArray = new int[7];
-        int ok = 1;
+        int ok = 1000;
         for (int l = 0; l < nArray.length; l++) {
         nArray[l] = ok;
         ok = ok * 2;
@@ -27,10 +26,14 @@ public class Benchmark{
         long min = Long.MAX_VALUE;
 
         for (int j = 0; j < k; j++) {
-            Zip postCodes = new Zip("resources/postnummer.csv");
-            Zip arrayzip = new Zip(postCodes);
+            LinkedList list = new LinkedList();
             long begin = System.nanoTime();
-            arrayzip.lookup(99499);
+            for (int i = 0; i < n; i++) {
+                list.add(i);
+            }
+            for (int i = 0; i < n; i++) {
+                list.remove();
+            }
             long end = System.nanoTime();
             t0 = (end - begin);
             if (t0 < min) {
