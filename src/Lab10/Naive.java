@@ -9,7 +9,7 @@ public class Naive {
         //String to = args[1];
         Integer max = 2000000000;
         long t0 = System.nanoTime();
-        Integer dist = shortest(map.lookup("Hallsberg"), map.lookup("Herrljunga"), max);
+        Integer dist = shortest(map.lookup("Malmö"), map.lookup("Åstorg"), max);
         long time = (System.nanoTime() - t0)/1_000_000;
         System.out.println("shorest: " + dist + " min (" + time + " ms)");
     }
@@ -30,17 +30,18 @@ public class Naive {
                 throw new RuntimeException("Error");
             }
             city = stack.pop();
+            if (city.neighbors[ip] != null){
+                shrt += city.neighbors[ip].distance;
+            }
             if (city.equals(to)){
                 return shrt;
             }
             ip = 0;
-            while (city.neighbors[ip] != null){
-                shrt += city.neighbors[ip].distance;
-                if (!city.neighbors[ip].city.equals(city)){
+                while (city.neighbors[ip] != null){
                     stack.push(city.neighbors[ip].city);
-                }
-                ip++;
+                    ip++;
             }
+
         }
         return shrt;
     }
