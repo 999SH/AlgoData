@@ -1,5 +1,7 @@
 package Benchmark;
 
+import Lab10.Naive;
+
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -26,14 +28,9 @@ public class Benchmark{
         long min = Long.MAX_VALUE;
 
         for (int j = 0; j < k; j++) {
-            LinkedList list = new LinkedList();
+
             long begin = System.nanoTime();
-            for (int i = 0; i < n; i++) {
-                list.add(i);
-            }
-            for (int i = 0; i < n; i++) {
-                list.remove();
-            }
+
             long end = System.nanoTime();
             t0 = (end - begin);
             if (t0 < min) {

@@ -5,7 +5,7 @@ import java.io.FileReader;
 
 public class Map {
     private City[] cities;
-    private final int mod = 541;
+    private final int mod = 542;
 
     public City[] getCities() {
         return cities;
