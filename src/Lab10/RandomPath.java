@@ -15,7 +15,7 @@ public class RandomPath {
         System.out.println(java.util.Arrays.toString(nArray));
 
         long t0;
-        int k = 2_000_000_000;
+        int k = 1;
         int curdist = Integer.MAX_VALUE;
         long curtim = Long.MAX_VALUE;
         for (int n : nArray) {
@@ -31,7 +31,7 @@ public class RandomPath {
                 if (t0 < min) {
                     min = t0;
                 }
-                if (dist < 2_000_000_000){
+                if (dist < 2_000_000_000) {
                     System.out.println(dist);
                 }
             }
@@ -60,39 +60,43 @@ public class RandomPath {
             return null;
         if (from == to)
             return 0;
-        Stack<City> stack = new Stack<>();
-        Stack<Connection> constack = new Stack<>();
+        restart:
+        for (int i = 0; i < 2; i++) {
+            Stack<City> stack = new Stack<>();
+            Stack<Connection> constack = new Stack<>();
 
-        Integer shrt = 0;
-        stack.push(from);
-        City city = from;
-        Connection connect;
-        outerloop: while (!stack.isEmpty() && !city.equals(to)) {
-            if (shrt > max) {
-                return Integer.MAX_VALUE;
-            }
-            city = stack.pop();
-            if (!constack.isEmpty()){
-                connect = constack.pop();
-                shrt += connect.distance;
-            }
-            int i = 0;
-            while (i < sp){
-                if (path[i++].equals(city)){ //if stack contains random
-                    break outerloop;
+            Integer shrt = 0;
+            stack.push(from);
+            City city = from;
+            Connection connect;
+            outerloop:
+            while (!stack.isEmpty() && !city.equals(to)) {
+                if (shrt > max) {
+                    return Integer.MAX_VALUE;
                 }
-            }
-            path[sp++] = city;
-            int ap = random(city.ap);
-                if (city.neighbors[ap] != null){
+                city = stack.pop();
+                if (!constack.isEmpty()) {
+                    connect = constack.pop();
+                    shrt += connect.distance;
+                }
+                int j = 0;
+                while (j < sp) {
+                    if (path[j++].equals(city)) { //if path contains random
+                        i = 0;
+                        continue restart;
+                    }
+                }
+                path[sp++] = city;
+                int ap = random(city.ap);
+                if (city.neighbors[ap] != null) {
                     stack.push(city.neighbors[ap].city);
                     constack.push(city.neighbors[ap]);
                 }
             }
-        if (city.equals(to)) {
-            return shrt;
+            if (city.equals(to)) {
+                return shrt;
+            }
         }
-        else return Integer.MAX_VALUE;
+        return Integer.MAX_VALUE;
     }
-
 }
