@@ -2,35 +2,26 @@ package Lab10;
 
 public class Naive {
     public static void main(String[] args) {
-        int[] nArray = new int[7];
-        int ok = 1000;
-        for (int l = 0; l < nArray.length; l++) {
-            nArray[l] = ok;
-            ok = ok * 2;
-        }
+        String[] nArray = new String[]{"Malmö", "Göteborg", "Malmö", "Stockholm", "Stockholm", "Göteborg", "Sundsvall", "Umeå", "Göteborg"};
+        String[] kArray = new String[]{"Göteborg", "Stockholm", "Stockholm", "Sundsvall", "Umeå", "Sundsvall", "Umeå", "Göteborg", "Umeå"};
+
         System.out.println(java.util.Arrays.toString(nArray));
-
-        long t0;
-        int k = 10;
-
-        for (int n : nArray) {
+        for (int bruh = 0; bruh < 9; bruh++) {
             Integer dist = 0;
+            long t0;
             long min = Long.MAX_VALUE;
             Map map = new Map("resources/trains.csv");
-            Integer max = 10_000;
-            for (int j = 0; j < k; j++) {
-                long begin = System.nanoTime();
-                dist = shortest(map.lookup("Kiruna"), map.lookup("Malmö"), max);
-                long end = System.nanoTime();
-                t0 = (end - begin);
-                if (t0 < min) {
-                    min = t0;
-                }
+            Integer max = 706;
+            long begin = System.nanoTime();
+            dist = shortest(map.lookup(nArray[bruh]), map.lookup(kArray[bruh]), max);
+            long end = System.nanoTime();
+            t0 = (end - begin);
+            if (t0 < min) {
+                min = t0;
             }
-            if (dist != null){
-                System.out.println("shortest: " + dist + " min (" + min/1_000_000 + " ns)");
-            }
-            else {
+            if (dist != null) {
+                System.out.println("shortest: between " + nArray[bruh] + " and " + kArray[bruh] +" "+ dist + " min (" + (float)min/1_000_000 + " ms)");
+            } else {
                 System.out.println("Beeger max needed");
             }
 
@@ -48,11 +39,11 @@ public class Naive {
         for (int i = 0; i < from.neighbors.length; i++) {
             if (from.neighbors[i] != null) {
                 connection = from.neighbors[i];
-                Integer dist  = shortest(connection.city,to,max-connection.distance);
-                if ((dist != null) && ((shrt==null) || (shrt > dist + connection.distance))){
+                Integer dist = shortest(connection.city, to, max - connection.distance);
+                if ((dist != null) && ((shrt == null) || (shrt > dist + connection.distance))) {
                     shrt = dist + connection.distance;
                 }
-                if ((shrt != null) && (max > shrt)){
+                if ((shrt != null) && (max > shrt)) {
                     max = shrt;
                 }
             }
