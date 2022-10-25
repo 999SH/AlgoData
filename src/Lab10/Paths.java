@@ -12,8 +12,8 @@ public class Paths {
     }
 
     public static void main(String[] args) {
-        String[] nArray = new String[]{"Malmö", "Göteborg", "Malmö", "Stockholm", "Stockholm", "Göteborg", "Sundsvall", "Umeå", "Göteborg"};
-        String[] kArray = new String[]{"Göteborg", "Stockholm", "Stockholm", "Sundsvall", "Umeå", "Sundsvall", "Umeå", "Göteborg", "Umeå"};
+        String[] nArray = new String[]{"Malmö", "Malmö", "Malmö", "Malmö", "Malmö", "Malmö", "Malmö", "Malmö", "Malmö"};
+        String[] kArray = new String[]{"Hässleholm", "Kalmar", "Katrineholm", "Arboga", "Fagersta", "Mora", "Gällivare", "Boden", "Luleå"};
 
         System.out.println(java.util.Arrays.toString(nArray));
         for (int bruh = 0; bruh < 9; bruh++) {
@@ -21,7 +21,7 @@ public class Paths {
             long t0;
             long min = Long.MAX_VALUE;
             Map map = new Map("resources/trains.csv");
-            Integer max = 706;
+            Integer max = 2000;
             Paths path = new Paths();
             long begin = System.nanoTime();
             dist = path.shortest(map.lookup(nArray[bruh]), map.lookup(kArray[bruh]), max);
